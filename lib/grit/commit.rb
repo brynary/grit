@@ -153,7 +153,7 @@ module Grit
         author, authored_date = self.actor(author_line)
 
         committer_line = lines.shift
-        if lines[0] && lines[0] != '' && lines[0] !~ /^encoding / && lines[0] !~ /^gpgsig /
+        if lines[0] && lines[0] != '' && lines[0] !~ /^encoding / && lines[0] !~ /^gpgsig / && lines[0] !~ /^mergetag /
           committer_line << lines.shift
         end
         committer, committed_date = self.actor(committer_line)
@@ -161,9 +161,9 @@ module Grit
         # not doing anything with this yet, but it's sometimes there
         encoding = lines.shift.split.last if lines.first =~ /^encoding/
 
-        if lines.first =~ /^gpgsig /
-          lines.shift # eat first gpgsig line
-          # gpgsig lines are prefixed with one space
+        if lines.first =~ /^gpgsig / || lines.first =~ /^mergetag /
+          lines.shift # eat first line
+          # gpgsig and mergetag lines are prefixed with one space
           lines.shift while lines.first =~ /^ /
         end
 

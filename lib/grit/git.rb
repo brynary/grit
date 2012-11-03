@@ -1,9 +1,8 @@
 require 'tempfile'
-require 'posix-spawn'
+
 module Grit
 
   class Git
-    include POSIX::Spawn
 
     class GitTimeout < RuntimeError
       attr_accessor :command

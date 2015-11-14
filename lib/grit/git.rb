@@ -355,9 +355,9 @@ module Grit
       if raise_errors && !status.success?
         raise CommandFailed.new(argv.join(' '), status.exitstatus, process.err)
       elsif process_info
-        [status.exitstatus, process.out, process.err]
+        [status.exitstatus, Grit.reencode_string(process.out), Grit.reencode_string(process.err)]
       else
-        process.out
+        Grit.reencode_string(process.out)
       end
     rescue TimeoutExceeded, MaximumOutputExceeded
       raise GitTimeout, argv.join(' ')

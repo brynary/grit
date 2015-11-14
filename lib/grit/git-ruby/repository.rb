@@ -317,11 +317,13 @@ module Grit
           end
         end
 
-        if options[:pretty] == 'raw'
+        result = if options[:pretty] == 'raw'
           log.map {|k, v| v }.join('')
         else
           log.map {|k, v| k }.join("\n")
         end
+
+        Grit.reencode_string(result)
       end
 
       # called by log() to recursively walk the tree

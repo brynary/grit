@@ -44,7 +44,7 @@ class TestConfig < Test::Unit::TestCase
 
     config = @r.config
 
-    assert_raise(IndexError) do
+    assert_raises(IndexError) do
       config.fetch("unknown")
     end
   end

@@ -40,13 +40,13 @@ class TestRepo < Test::Unit::TestCase
   # new
 
   def test_new_should_raise_on_invalid_repo_location
-    assert_raise(InvalidGitRepositoryError) do
+    assert_raises(InvalidGitRepositoryError) do
       Repo.new("/tmp")
     end
   end
 
   def test_new_should_raise_on_non_existant_path
-    assert_raise(NoSuchPathError) do
+    assert_raises(NoSuchPathError) do
       Repo.new("/foobar")
     end
   end
@@ -353,7 +353,7 @@ class TestRepo < Test::Unit::TestCase
 
     File.any_instance.expects(:write).never
 
-    assert_raise RuntimeError do
+    assert_raises RuntimeError do
       @r.alternates = alts
     end
   end

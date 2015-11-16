@@ -20,11 +20,12 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
 
-  s.add_dependency('posix-spawn', "~> 0.3.6")
-  s.add_dependency('mime-types', "~> 1.15")
-  s.add_dependency('diff-lcs', "~> 1.1")
+  s.add_dependency("posix-spawn", "~> 0.3.6")
+  s.add_dependency("mime-types", "~> 1.15")
+  s.add_dependency("diff-lcs", "~> 1.1")
 
-  s.add_development_dependency('mocha')
+  s.add_development_dependency("test-unit")
+  s.add_development_dependency("mocha", "0.14.0")
 
   # = MANIFEST =
   s.files = %w[

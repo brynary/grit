@@ -21,6 +21,7 @@ module Grit
     attr_accessor :name, :email, :date, :offset
 
     def initialize(str)
+      str = Grit.reencode_string(str)
       @email = ''
       @date = Time.now
       @offset = 0
@@ -102,7 +103,7 @@ module Grit
     end
 
     def raw_content
-      @content
+      Grit.reencode_string(@content)
     end
   end
 
@@ -266,7 +267,7 @@ module Grit
       @author = author
       @parent = parent
       @committer = committer
-      @message = message
+      @message = Grit.reencode_string(message)
       @headers = headers
       @repository = repository
     end

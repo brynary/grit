@@ -62,6 +62,15 @@ module Grit
     def log(str)
       logger.debug { str }
     end
+
+    def reencode_string(str)
+      target_encoding = Encoding.default_internal || Encoding.default_external
+      if str.encoding != target_encoding
+        str.force_encoding(target_encoding).encode(str.encoding, target_encoding, invalid: :replace, undef: :replace)
+      else
+        str
+      end
+    end
   end
   self.debug = false
   self.use_git_ruby = true

@@ -65,7 +65,7 @@ module Grit
 
     def reencode_string(str)
       target_encoding = Encoding.default_internal || Encoding.default_external
-      if str.encoding != target_encoding
+      if str && str.encoding != target_encoding
         str.force_encoding(target_encoding).encode(str.encoding, target_encoding, invalid: :replace, undef: :replace)
       else
         str

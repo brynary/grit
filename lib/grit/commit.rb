@@ -137,7 +137,7 @@ module Grit
     # - it broke when 'encoding' was introduced - not sure what else might show up
     #
     def self.list_from_string(repo, text)
-      lines = text.split("\n")
+      lines = Grit.reencode_string(text).split("\n")
 
       commits = []
 

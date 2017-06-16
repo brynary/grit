@@ -341,11 +341,18 @@ module Grit
       # run it and deal with fallout
       Grit.log(argv.join(' ')) if Grit.debug
 
+      resolved_timeout =
+        case timeout
+        when true then Grit::Git.git_timeout
+        when Numeric then timeout
+        else nil
+        end
+
       process =
         Child.new(env, *(argv + [{
           :input   => input,
           :chdir   => chdir,
-          :timeout => (Grit::Git.git_timeout if timeout == true),
+          :timeout => resolved_timeout,
           :max     => (Grit::Git.git_max_size if timeout == true)
         }]))
       Grit.log(process.out) if Grit.debug
